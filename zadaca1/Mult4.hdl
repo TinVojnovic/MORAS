@@ -1,0 +1,9 @@
+CHIP Mult4
+{
+    IN in[16];
+    OUT out[16];
+
+    PARTS:
+        BitShiftL(in = in, out = in2); //bit shiftanje u lijevo je jednako mnozenju s 2
+        BitShiftL(in = in2, out = out);
+}
