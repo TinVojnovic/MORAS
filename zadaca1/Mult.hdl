@@ -1,6 +1,7 @@
 CHIP Mult{ 
     IN a[16], b[16];
     OUT out[16];
+    
     PARTS:
         Mux16(a=false, b=a, sel=b[0], out=o0); // mux16 = ako je sel==1 onda out=b, inace out=a.
 
@@ -48,26 +49,21 @@ CHIP Mult{
 
         BitShiftL(in=s14, out=s15);
         Mux16(a=false, b= s15, sel=b[15], out=o15);
-
-
-        Add16(a=o0, b=o1, out=add0);
-        Add16(a=o2, b=o3, out=add1);
-        Add16(a=o4, b=o5, out=add2);
-        Add16(a=o6, b=o7, out=add3);
-        Add16(a=o8, b=o9, out=add4);
-        Add16(a=o10, b=o11, out=add5);
-        Add16(a=o12, b=o13, out=add6);
-        Add16(a=o14, b=o15, out=add7);
-
         
-        Add16(a=add0, b=add1, out=add20);
-        Add16(a=add2, b=add3, out=add21);
-        Add16(a=add4, b=add5, out=add22);
-        Add16(a=add6, b=add7, out=add23);
-
-
-        Add16(a=add20, b=add21, out=add30);
-        Add16(a=add22, b=add23, out=add31);
-
-        Add16(a=add30, b=add31, out=out);
+        
+        Add16(a=o0, b=o1, out=add0);
+        Add16(a=add0, b=o2, out=add1);
+        Add16(a=add1, b=o3, out=add2);
+        Add16(a=add2, b=o4, out=add3);
+        Add16(a=add3, b=o5, out=add4);
+        Add16(a=add4, b=o6, out=add5);
+        Add16(a=add5, b=o7, out=add6);
+        Add16(a=add6, b=o8, out=add7);
+        Add16(a=add7, b=o9, out=add8);
+        Add16(a=add8, b=o10, out=add9);
+        Add16(a=add9, b=o11, out=add10);
+        Add16(a=add10, b=o13, out=add11);
+        Add16(a=add11, b=o14, out=add12);
+        Add16(a=add12, b=o15, out=add13);
+        Add16(a=add13, b=o15, out=out);
 }
